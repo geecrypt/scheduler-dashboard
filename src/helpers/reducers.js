@@ -1,4 +1,4 @@
-import { filter } from "lodash/fp";
+import {filter} from "lodash/fp";
 
 function getSpotsForDay(state, day) {
   const foundDay = state.days.find(d => d.name === day);
@@ -23,7 +23,10 @@ export function setInterview(state, id, interview) {
     ...state,
     days: state.days.map(day => ({
       ...day,
-      spots: getSpotsForDay({ ...state, appointments }, day.name)
+      spots: getSpotsForDay({
+        ...state,
+        appointments
+      }, day.name)
     })),
     appointments
   };
