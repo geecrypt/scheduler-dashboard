@@ -1,4 +1,4 @@
-import { flow, map, reduce, filter, join, minBy } from "lodash/fp";
+import {flow, map, reduce, filter, join, minBy} from "lodash/fp";
 
 export function getTotalInterviews(state) {
   return filter(appointment => appointment.interview)(state.appointments)
@@ -20,7 +20,10 @@ export function getLeastPopularTimeSlot(state) {
       }),
       {}
     ),
-    map.convert({ cap: false })((count, time) => ({ time, count })),
+    map.convert({cap: false})((count, time) => ({
+      time,
+      count
+    })),
     times => filter(time => time.count === minBy("count")(times).count)(times),
     map(time => time.time),
     join(", ")
